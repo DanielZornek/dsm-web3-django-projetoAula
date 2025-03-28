@@ -1,0 +1,128 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root{
+    --cor1: #0081a7;
+    --cor2: #00afb9;
+    --cor3: #fdfcdc;
+    --cor4: #fed9b7;
+    --cor5: #f07167;
+}
+
+body{
+    background-image: linear-gradient(to bottom, var(--cor3), var(--cor4));
+    background-repeat: no-repeat;
+    min-height: 120vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 4em;
+    padding: 1.2em;
+    background-color: rgba(0, 0, 0, 0.450);
+    width: 100%;
+    position: fixed;
+    top: 0px;
+}
+
+header nav ul{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    gap: 2em;
+}
+
+header nav ul li a{
+    text-decoration: none;
+    color: var(--cor3);
+    padding: .6em 2.4em;
+    transition: .3s ease-in-out;
+    font-weight: 600;
+    border-radius: 1em;
+}
+
+header nav ul li a:hover{
+    color: var(--cor1);
+    background-color: var(--cor3);
+    text-decoration: underline;
+}
+
+.header-buttonLink{
+    cursor: pointer;
+    background-color: var(--cor3);
+    color: #000000;
+    padding: .6em 2.4em;
+    border: none;
+    border: 1px solid var(--cor3);
+    border-radius: 1em;
+    transition: .3s ease-in;
+    font-weight: 600;
+}
+
+.header-buttonLink:hover{
+    background-color: transparent;
+    color: var(--cor3);
+}
+
+main{
+    margin-top: 16em;
+    background-color: rgba(0, 0, 0, 0.450);
+    width: 80%;
+    padding: 2%;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.japan-image{
+    max-width: 100%;
+}
+
+p{
+    font-size: 20px;
+}
+
+footer{
+    margin-top: auto;
+    background-color: #fdfcdc;
+    padding: 4em 2em;
+    width: 100%;
+    text-align: center;
+}
+
+.display-none{
+    display: none;
+}
+
+#menuHam{
+    position: absolute;
+    top: 2em;
+    right: 2em;
+    height: 70px;
+    width: 70px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    border: none;
+}
+
+#menuHam .menuHam-listra{
+    height: 8px;
+    width: 100%;
+    background-color: #000000;
+    border: 1px solid black;
+    border-radius: 1em;
+}
