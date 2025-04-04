@@ -1,0 +1,34 @@
+* No arquivo models do app ficam as tabelas do banco de dados
+
+° Criar arquivo de configuração do banco
+    py manage.py makemigrations 
+
+° verificar se o modelo foi criado
+    ir na pasta migrations do app e ver se tem um arquivo novo, geralmente o arquivo começa com 000
+
+* automaticamente já cria um campo id primary key, ele é implementado automaticamente também nas inserções
+
+° Criar tabela
+    py manage.py migrate 
+
+    * vai criar também as tabelas que vem por padrão no django, umas 18
+
+* Consultar banco de dados pelo vscode
+    - Instalar extensão do sqlite
+    - Ir no arquivo do sqlite na raiz do projeto
+    - botão direito nele
+    - clicar em open database
+
+° inserindo via terminal
+    py manage.py shell
+        vai abri uma interface de comandos sql
+    
+    * importar o model usuário primeiro!!!!
+        from app.models import Usuario 
+        user1 = Usuario(nome="Pedrao", email="pedrao@gmail.com", senha="pedrao123") 
+        user1.save()
+
+        * não esquecer do save, porque ele que realmente insere no banco  
+        
+° Mostrando todos os dados da tabela Usuario (Select *)
+    Usuario.objects.all().values()
