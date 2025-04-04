@@ -29,6 +29,16 @@
         user1.save()
 
         * não esquecer do save, porque ele que realmente insere no banco  
-        
+
 ° Mostrando todos os dados da tabela Usuario (Select *)
     Usuario.objects.all().values()
+
+
+° O django oferece um jeito de criar formulários
+    - criar arquivo forms.py na pasta do app
+
+    * importar o forms do django
+        from django import forms
+
+* Sempore que trabalhar com formulário precisa colocar o csrf_token, caso contrário dará erro no arquivo
+próprio formulário

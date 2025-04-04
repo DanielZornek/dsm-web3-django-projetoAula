@@ -74,6 +74,16 @@ header nav ul li a:hover{
     color: var(--cor3);
 }
 
+.cadastrar{
+    background-color: var(--cor3);
+    color: var(--cor1);
+}
+
+.cadastrar:hover{
+    background-color: var(--cor1);
+    color: var(--cor3);
+}
+
 main{
     margin-top: 16em;
     background-color: rgba(0, 0, 0, 0.450);

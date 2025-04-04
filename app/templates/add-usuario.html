@@ -2,6 +2,34 @@
 
 {% block titulo %} Novo Usuário {% endblock %}
 
+{% load static %}
+
+{% block style %} <link rel="stylesheet" href="{% static '_forms.css' %}"> {% endblock %}
+
 {% block conteudo %}
+
     <h1>Novo Usuário</h1>
+    <hr>
+    <form action="{% url 'addUsuario' %}" method="post" class="form">
+            <!-- campos renderizados -->
+            {% csrf_token %} <!-- NÃO ESQUECER, DARÁ ERRO SEM ISSO, SERVE PARA IMPEDIR SQL INJECTION -->
+            {{ form.as_p }}
+            <button type="submit" class="form-button">
+                Cadastrar
+            </button>
+
+        <!-- não precisa criar parrudo assim, mas o botão precisa  -->
+        <!-- <label class="form-label" for="email">Nome: </label>
+        <input class="form-input" type="text" placeholder="Adailton Fulano" id="nome" name="nome">
+
+        <label class="form-label" for="email">E-mail:</label>
+        <input class="form-input" type="email" placeholder="adailton_fulano@gmail.com" id="email" name="email">
+
+        <label class="form-label" for="senha">Senha: </label>
+        <input class="form-input" type="password" id="senha" name="senha">
+
+        <button type="submit" class="form-button">
+            Cadastrar
+        </button> -->
+    </form>
 {% endblock %}
