@@ -6,3 +6,10 @@ class formulario(forms.ModelForm):
         model = Usuario
         fields = ('nome', 'email', 'senha')
         # renderizando o formulário
+    
+        # definindo os atributos dos elementos do form
+        widgets = {
+            'nome' : forms.TextInput(attrs={'type':'text', 'class':'form-input'}),
+            'email' : forms.TextInput(attrs={'type':'email', 'class':'form-input'}),
+            'senha' : forms.TextInput(attrs={'type':'senha', 'class':'form-input'})
+        }
