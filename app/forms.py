@@ -1,5 +1,5 @@
 from django import forms
-from app.models import Usuario
+from app.models import Usuario, Veiculo
 
 class formulario(forms.ModelForm):
     class Meta: # não precisa de parenteses
@@ -13,3 +13,9 @@ class formulario(forms.ModelForm):
             'email' : forms.TextInput(attrs={'type':'email', 'class':'form-input'}),
             'senha' : forms.TextInput(attrs={'type':'senha', 'class':'form-input'})
         }
+
+
+class VeiculoForm(forms.ModelForm):
+    class Meta:
+        model = Veiculo
+        fields = ('marca', 'modelo', 'descricao', 'preco', 'dataFabricacao', 'imagem')

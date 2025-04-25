@@ -5,4 +5,11 @@ class Usuario(models.Model): # aqui dizemos que a classe pai Model irá dar hera
     nome = models.CharField(max_length=100) # varchar, deve especificar o tamanho
     email = models.EmailField()
     senha = models.CharField(max_length=16)
-    
+
+class Veiculo(models.Model):
+    marca = models.CharField(max_length=80)
+    modelo = models.CharField(max_length=80)
+    descrição = models.CharField(max_length=200)
+    preço = models.DecimalField(max_digits=10, decimal_places=2)
+    dataFabricacao = models.DateField()
+    imagem = models.ImageField(upload_to='imagens/')
