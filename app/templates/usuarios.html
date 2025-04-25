@@ -10,11 +10,16 @@
     <tr>
         <th>Nome</th>
         <th>E-mail</th>
+        <th colspan="2">
+            Ações
+        </th>
     </tr>  
     {% for usuario in listaUsuarios %}
         <tr>
             <td> {{ usuario.nome }} </td>
             <td> {{ usuario.email }}</td>
+            <td><a href="{% url 'excluirUsuario' usuario.id %}">Excluir</a></td>
+            <td><a href="{% url 'editarUsuario' usuario.id %}">Editar</a></td>
         </tr>
     {% endfor %}
 </table>   

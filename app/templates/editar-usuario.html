@@ -1,0 +1,15 @@
+{% extends 'template.html' %}
+
+{% block 'titulo' %}
+    Editar Usuário
+{% endblock %}
+
+{% block conteudo %}
+    <form method="POST" class="form"> 
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="form-button">
+            Atualizar
+        </button>
+    <form>
+{% endblock %}

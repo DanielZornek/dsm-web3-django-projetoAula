@@ -21,11 +21,27 @@ def exibirUsuarios(request):
                     # {} PARA PASSAR PARA DICIONARIO PQ VEM COMO ARRAY ASSOCIATIVO
 
 def addUsuario(request):
-    formUser = formulario(request.POST or None) # verifica se foi ou não submetido
+    formUsuario = formulario(request.POST or None) # verifica se foi ou não submetido
 
     if request.POST: 
-        if formUser.is_valid():
-            formUser.save() # insert
+        if formUsuario.is_valid():
+            formUsuario.save() # insert
             return redirect("exibirUsuarios")
 
-    return render(request, "add-usuario.html", {'form': formUser}) # aspas simples no dicionário
+    return render(request, "add-usuario.html", {'form': formUsuario}) # aspas simples no dicionário
+
+def excluirUsuario(request, id_usuario): # o parametro que a funnção recebe tem de ter o mesmo nome da url
+    usuario = Usuario.objects.get(id=id_usuario)
+    usuario.delete()
+    return redirect('exibirUsuarios')
+
+def editarUsuario(request, id_usuario):
+    usuario = Usuario.objects.get(id=id_usuario)
+    formUsuarioEditar = formulario(request.POST or None, instance=usuario)
+
+    if request.POST:
+        if formUsuarioEditar.is_valid():
+            formUsuarioEditar.save()
+            return redirect("exibirUsuarios")
+    else:
+        return render(request, "editar-usuario.html", {'form' : formUsuarioEditar})
