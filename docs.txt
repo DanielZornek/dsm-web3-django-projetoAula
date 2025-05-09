@@ -97,3 +97,5 @@ Dia 26/04/25 - Criando o sistema de cadastro de produtos
 Para usar o cadastro de imagem precisa usar o Pillow
 
     ° python3/py -m pip install Pillow
+
+Dia 9/5/2025 - Sistema de login, sessão e página welcome

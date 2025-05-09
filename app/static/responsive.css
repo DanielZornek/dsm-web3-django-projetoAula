@@ -1,6 +1,6 @@
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 1300px) {
     header,
-    header nav ul{
+    header nav, header nav ul{
         display: flex;
         flex-direction: column;
     }
@@ -8,16 +8,9 @@
         margin-top: 30em;
     }
     #menuHam{
-        position: fixed;
-        top: 2em;
-        right: 2em;
-        height: 15vh;
-        width: 8vw;
-        background-color: transparent;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        cursor: pointer;
-        border: none;
+        width: 10vw;
+    }
+    #menuHam .menuHam-listra{
+        height: 6px;
     }
 }

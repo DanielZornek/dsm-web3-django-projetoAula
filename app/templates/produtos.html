@@ -9,12 +9,11 @@
 {% block conteudo %}
 <h1>Veículos cadastrados</h1>
 <hr>
-<div class="card-group"></div>
+<div class="card-group">
 {% for veiculo in listaProdutos %}
     
     <div class="card-group-card">
-        <section class="card-group-card-image">
-            <img src="media/{{veiculo.imagem}}" alt="Uma foto do veículo">
+        <section class="card-group-card-image" style="background-image: url('media/{{veiculo.imagem}}')">
         </section>
         <h3>{{ veiculo.marca }}</h3>
         <h4>{{ veiculo.modelo }}</h4>
@@ -23,10 +22,20 @@
                 {{ veiculo.descricao }}
             </p>
         </section>
-        <section>
-            <span>
+        <section class="card-group-card-numbers">
+            <span class="card-group-card-numbers-count">
                 Em estoque: {{ veiculo.estoque }}
             </span>
+            <span class="card-group-card-numbers-price">
+                $ {{ veiculo.preco }} 
+            </span>
+            
+        </section>
+
+        <section>
+            <button>
+                Comprar
+            </button>
         </section>
 
     </div>
