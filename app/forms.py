@@ -14,11 +14,24 @@ class formulario(forms.ModelForm):
             'senha' : forms.TextInput(attrs={'type':'senha', 'class':'form-input'})
         }
 
+# formuçario para login
+class formularioLogin(forms.ModelForm):
+    class Meta: 
+        model = Usuario
+        fields = ('email', 'senha')
+        # renderizando o formulário
+    
+        # definindo os atributos dos elementos do form
+        widgets = {
+            'email' : forms.TextInput(attrs={'type':'email', 'class':'form-input'}),
+            'senha' : forms.TextInput(attrs={'type':'senha', 'class':'form-input'})
+        }
+
 
 class VeiculoForm(forms.ModelForm):
     class Meta:
         model = Veiculo
-        fields = ('marca', 'modelo', 'descricao', 'preco', 'dataFabricacao', 'imagem')
+        fields = ('marca', 'modelo', 'descricao', 'preco', 'dataFabricacao', 'estoque', 'imagem')
 
         widgets = {
             'marca' : forms.TextInput(attrs={'type':'text', 'class':'form-input'}),
@@ -26,5 +39,6 @@ class VeiculoForm(forms.ModelForm):
             'descricao' : forms.TextInput(attrs={'type':'text', 'class':'form-input'}),
             'preco' : forms.TextInput(attrs={'type':'number', 'class':'form-input'}),
             'dataFabricacao' : forms.TextInput(attrs={'type':'date', 'class':'form-input'}),
+            'estoque' : forms.TextInput(attrs={'type':'number', 'class':'form-input'}),
             'imagem' : forms.FileInput(attrs={'accept': 'image/*'})
         }

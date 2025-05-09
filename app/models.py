@@ -12,4 +12,5 @@ class Veiculo(models.Model):
     descricao = models.CharField(max_length=200)
     preco = models.DecimalField(max_digits=10, decimal_places=2)
     dataFabricacao = models.DateField()
+    estoque = models.IntegerField()
     imagem = models.ImageField(upload_to='imagens/')

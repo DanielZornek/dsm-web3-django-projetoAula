@@ -1,9 +1,10 @@
+from datetime import timedelta
 from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
 from django.template import loader
 from app.models import Usuario, Veiculo
-from app.forms import formulario, VeiculoForm
+from app.forms import formulario, VeiculoForm, formularioLogin
 
 # Create your views here.
 
@@ -65,3 +66,26 @@ def cadastrarProduto(request):
             return redirect("exibirProdutos")
     
     return render(request, "cadastrar-produto.html", {'formProduto' : form})
+
+def login(request):
+    frmLogin = formularioLogin(request.POST or None)
+
+    if request.POST: # ao clicar em entrar, no botão submit do form
+        if frmLogin.is_valid():
+            _email = frmLogin.cleaned_data.get("email") # capture o email: importante ter algo diferente pra diferencia do atributo da classe do modelo
+            _senha = frmLogin.cleaned_data.get("senha") # capture a senha
+
+            try:
+                userLogin = Usuario.objects.get(email=_email, senha=_senha) 
+                if userLogin is not None:
+                    request.session.set_expiry(timedelta(seconds=60))
+                    request.session['email'] = _email
+                    return redirect("dashboard")
+            except Usuario.DoesNotExist:
+                return render(request, "login.html")
+
+    return render(request, "login.html", {'form' : frmLogin})
+
+def dashboard(request):
+    _email = request.session.get("email")
+    return render(request, "dashboard.html", {'email': _email})

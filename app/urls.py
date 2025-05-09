@@ -10,5 +10,7 @@ urlpatterns = [
     path('excluir-usuario/<int:id_usuario>', views.excluirUsuario, name="excluirUsuario"),
     path('editar-usuario/<int:id_usuario>', views.editarUsuario, name="editarUsuario"),
     path("cadastrar-produto", views.cadastrarProduto, name="cadastrarProduto"),
-    path('produtos', views.exibirProdutos, name="exibirProdutos")
+    path('produtos', views.exibirProdutos, name="exibirProdutos"),
+    path('login', views.login, name="login"),
+    path('dashboard', views.dashboard, name="dashboard")
 ]

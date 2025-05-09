@@ -116,17 +116,7 @@ footer{
 }
 
 #menuHam{
-    position: absolute;
-    top: 2em;
-    right: 2em;
-    height: 70px;
-    width: 70px;
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-    border: none;
+    display: none;
 }
 
 #menuHam .menuHam-listra{
