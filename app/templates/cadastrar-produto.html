@@ -1,5 +1,12 @@
 {% extends "template.html" %}
 
+
+{% if not request.session.get("email"): %}
+    <script> alert("está logado") </script>
+{% else %}    
+    <script> alert("Não está logado!")</script>
+{% endif %}
+
 {% load static %}
 
 {% block style %} <link rel="stylesheet" href="{% static '_forms.css' %}"> {% endblock %}

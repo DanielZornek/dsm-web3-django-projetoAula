@@ -55,6 +55,9 @@ def exibirProdutos(request):
 
 def cadastrarProduto(request):
 
+    if not request.session.get("email"):
+        return redirect("login")
+
     form = VeiculoForm(request.POST or None)
 
     if request.method == 'POST':
