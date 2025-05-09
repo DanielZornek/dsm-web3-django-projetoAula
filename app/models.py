@@ -9,7 +9,7 @@ class Usuario(models.Model): # aqui dizemos que a classe pai Model irá dar hera
 class Veiculo(models.Model):
     marca = models.CharField(max_length=80)
     modelo = models.CharField(max_length=80)
-    descrição = models.CharField(max_length=200)
-    preço = models.DecimalField(max_digits=10, decimal_places=2)
+    descricao = models.CharField(max_length=200)
+    preco = models.DecimalField(max_digits=10, decimal_places=2)
     dataFabricacao = models.DateField()
     imagem = models.ImageField(upload_to='imagens/')

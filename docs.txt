@@ -1,3 +1,52 @@
+Templates - models.py: fica as tabelas do banco de dados, os modelos(classes)
+Views - views.py: lida com a lógica e gerencia o fluxo de dados, a view é renderizada a partir de uma url
+Templates - template.html: renderiza o HTML
+
+° CRIANDO AMBIENTE VIRTUAL
+
+no terminal
+py -m venv "nome do ambiente"
+ou 
+python3 -m venv "nome"
+
+° ATIVAR O AMBIENTE VIRTUAL
+
+no terminal
+    ° windows: "nome do ambiente"\scripts\activate 
+    ° linux: source "nome do ambiente"\scripts\activate 
+        ou . "nome do ambiente"\bin\activate 
+
+° INSTALAR DJANGO
+no terminal 
+    ° windows: py -m pip install Django
+    ° linux: python3 -m pip install Django
+
+° Verificar instalação
+no terminal
+djn
+django-admin --version
+
+° Criando projeto
+no terminal
+django-admin startproject "Nome do projeto" . 
+- para criar sem uma subpata usar "."
+    * o manage.py é o arquivo de execução do projeto
+
+° Executar o projeto
+
+py manage.py runserver
+abrir no navegador no ip informado no terminal
+
+° Criar app
+py manage.py startapp "nome"
+
+
+- urls ficam as rotas da página
+
+=========================================================================
+
+CRUD
+
 * No arquivo models do app ficam as tabelas do banco de dados
 
 ° Criar arquivo de configuração do banco
@@ -40,5 +89,11 @@
     * importar o forms do django
         from django import forms
 
-* Sempore que trabalhar com formulário precisa colocar o csrf_token, caso contrário dará erro no arquivo
-próprio formulário
+* Sempre que trabalhar com formulário precisa colocar o csrf_token, caso contrário dará erro no arquivo
+    ° isso porque o django exige um tratamento de criptografia com os dados
+
+Dia 26/04/25 - Criando o sistema de cadastro de produtos
+
+Para usar o cadastro de imagem precisa usar o Pillow
+
+    ° python3/py -m pip install Pillow

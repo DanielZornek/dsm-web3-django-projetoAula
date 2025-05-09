@@ -1,0 +1,32 @@
+{% extends "template.html" %}
+
+{% block titulo %} Veículos {% endblock %}
+
+{% load static %}
+
+{% block style %} <link rel="stylesheet" href="{% static 'produtos.css' %}"> {% endblock %}
+
+{% block conteudo %}
+<h1>Veículos cadastrados</h1>
+<hr>
+<div class="card-group"></div>
+{% for veiculo in listaProdutos %}
+    
+    <div class="card-group-card">
+        <section class="card-group-card-image">
+            <img src="media/{{veiculo.imagem}}" alt="Uma foto do veículo">
+        </section>
+        <h3>{{ veiculo.marca }}</h3>
+        <h4>{{ veiculo.modelo }}</h4>
+        <section class="card-group-card-description">
+            <p>
+                {{ veiculo.descricao }}
+            </p>
+        </section>
+
+    </div>
+    
+{% endfor %}
+</div>
+
+{% endblock %}

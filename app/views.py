@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
 from django.template import loader
-from app.models import Usuario
-from app.forms import formulario # type: ignore
+from app.models import Usuario, Veiculo
+from app.forms import formulario, VeiculoForm
 
 # Create your views here.
 
@@ -45,3 +45,23 @@ def editarUsuario(request, id_usuario):
             return redirect("exibirUsuarios")
     else:
         return render(request, "editar-usuario.html", {'form' : formUsuarioEditar})
+
+def exibirProdutos(request):
+    veiculos = Veiculo.objects.all().values()
+    
+    return render(request, "produtos.html", 
+                    {'listaProdutos': veiculos})
+
+def cadastrarProduto(request):
+
+    form = VeiculoForm(request.POST or None)
+
+    if request.method == 'POST':
+
+        form = VeiculoForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect("exibirProdutos")
+    
+    return render(request, "cadastrar-produto.html", {'formProduto' : form})
