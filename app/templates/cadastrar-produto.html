@@ -1,12 +1,5 @@
 {% extends "template.html" %}
 
-
-{% if not request.session.get("email"): %}
-    <script> alert("está logado") </script>
-{% else %}    
-    <script> alert("Não está logado!")</script>
-{% endif %}
-
 {% load static %}
 
 {% block style %} <link rel="stylesheet" href="{% static '_forms.css' %}"> {% endblock %}
@@ -30,4 +23,21 @@
         </button>
 
     </form>
+    <script>
+        // Código JavaScript para exibir as mensagens como alertas
+        document.addEventListener('DOMContentLoaded', function() {
+            const messageList = document.querySelector('.messages');
+
+            if (messageList) {
+                const messageItems = messageList.querySelectorAll('li');
+
+                messageItems.forEach(item => {
+                    // Pega o texto da mensagem
+                    const messageText = item.textContent.trim();
+                    // Exibe o alerta
+                    alert(messageText);
+                });
+            }
+        });
+    </script>
 {% endblock %}

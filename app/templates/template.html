@@ -11,17 +11,14 @@
 </head>
 <body>
     <header>
-        <div>
+            
+        <nav>
             <a href="{% url 'app' %}">
                 <img width="58px" src="{% static 'logo.png' %}" alt="logo">
             </a>
-        </div>
-        <nav>
             <ul>
                 <li><a href="{% url 'exibirUsuarios' %}">Usuários</a></li>
                 <li><a href="{% url 'exibirProdutos' %}">Produtos</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
             </ul>
             <a href="{% url 'login' %}" >
             <button class="header-buttonLink">Entrar</button>
@@ -56,15 +53,9 @@
         document.querySelector("#menuHam").addEventListener('click', ()=>{
             if(estaAberto){
                 document.querySelector("header").classList.add('display-none');
-                document.querySelector("main").style.marginTop = '0';
                 estaAberto = false;
             }else{
                 document.querySelector("header").classList.remove('display-none');
-                if(window.innerWidth > 768){
-                    document.querySelector("main").style.marginTop = '16em';
-                }else{
-                    document.querySelector("main").style.marginTop = '30em';
-                }
                 estaAberto = true;
             }
         })

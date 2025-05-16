@@ -1,0 +1,66 @@
+.dashboard{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.dashboard-info{
+    display: flex;
+    flex-direction: column;
+    gap: 1.8em;
+}
+
+.dashboard-info-data{
+    display: flex;
+    flex-direction: column;
+    gap: 1.4em;
+}
+
+.dashboard-links{
+    display: flex;
+    flex-direction: row;
+    padding: 1.2em;
+    justify-content: space-evenly;
+}
+
+.dashboard-links-link{
+    text-decoration: none;
+    padding: .8em 1.2em;
+    border-radius: .6em;
+    font-weight: 600;
+    font-size: 1.2em;
+    transition: .2s ease-in;
+    border: 2px solid transparent;
+    color: #000;
+}
+
+.dashboard-links-link:hover{
+    text-decoration: underline;
+    background-color: transparent;
+}
+
+.usuarios{
+    background-color: var(--cor2);
+    color: #fff;
+}
+
+.usuarios:hover{
+    border-color: var(--cor2);
+}
+
+.cadastrarProduto{
+    background-color: var(--cor3);
+}
+
+.cadastrarProduto:hover{
+    border-color: var(--cor3);
+}
+
+.produtos{
+    background-color: var(--cor4);
+}
+
+.produtos:hover{
+    border-color: var(--cor4);
+}
