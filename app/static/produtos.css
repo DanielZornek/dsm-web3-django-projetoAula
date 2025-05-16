@@ -1,8 +1,11 @@
 .card-group{
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 1.4em;
+    justify-content: space-evenly;
 }
 
 .card-group-card{
@@ -46,9 +49,6 @@
 }
 
 @media screen and (max-width: 760px) {
-    .card-group{
-        grid-template-columns: 1fr;
-    }
     .card-group-card{
         width: 100%;
     }

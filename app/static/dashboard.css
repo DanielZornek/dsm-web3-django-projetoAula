@@ -54,13 +54,15 @@
 }
 
 .cadastrarProduto:hover{
-    border-color: var(--cor3);
+    border-color: var(--cor3); 
+    color: #fff;
 }
 
 .produtos{
-    background-color: var(--cor4);
+    background-color: var(--cor1);
 }
 
 .produtos:hover{
-    border-color: var(--cor4);
+    border-color: var(--cor1);
+    color: var(--cor1);
 }

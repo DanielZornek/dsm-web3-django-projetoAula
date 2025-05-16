@@ -4,13 +4,14 @@
         display: flex;
         flex-direction: column;
     }
-    main{
-        margin-top: 30em;
-    }
     #menuHam{
-        width: 14vw;
+        width: 10vw;
     }
     #menuHam .menuHam-listra{
-        height: 6px;
+        height: 3px;
+    }
+    .dashboard-links{
+        flex-direction: column;
+        gap: 2em;
     }
 }

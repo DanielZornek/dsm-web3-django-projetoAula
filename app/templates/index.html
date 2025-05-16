@@ -6,9 +6,13 @@
 
 {% block conteudo %}
 
-<h1>Pakatsu Japanese Cars</h1>
-<hr>
-<p>Japão, a terra da oportunidade, bugigangas, cultura e muita comida diferente, venha conhecer o melhor da Ásia.</p>
-<img class="japan-image" src="{% static 'foto.jpg' %}" alt="">
+<div class="banner">
+    <video autoplay muted loop class="video-banner">
+        <source src="{% static 'lambo1.mp4' %}" type="video/mp4">
+        Seu navegador não suporta o vídeo.
+    </video>
+</div>
+
+<h1 class="titulo">Zamasu Cars</h1>
 
 {% endblock %}

@@ -6,17 +6,20 @@
 }
 
 :root{
-    --cor1: #0081a7;
-    --cor2: #00afb9;
-    --cor3: #fdfcdc;
-    --cor4: #fed9b7;
-    --cor5: #f07167;
+    --cor1: #06BEE1;
+    --cor2: #003049;
+    --cor3: #EDDEA4;
+    --cor4: #280003;
+    --cor5: #DB5461;
+}
+
+html{
+    overflow-x: hidden;
 }
 
 body{
     background-image: linear-gradient(to bottom, var(--cor3), var(--cor4));
     background-repeat: no-repeat;
-    min-height: 120vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,11 +31,20 @@ header{
     align-items: center;
     justify-content: center;
     gap: 4em;
-    padding: 1.2em;
     background-color: rgba(0, 0, 0, 0.450);
     width: 100%;
     position: fixed;
     top: 0px;
+    z-index: 5;
+}
+
+header nav{
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
 }
 
 header nav ul{
@@ -45,7 +57,7 @@ header nav ul{
 header nav ul li a{
     text-decoration: none;
     color: var(--cor3);
-    padding: .6em 2.4em;
+    padding: .2em 2.4em;
     transition: .3s ease-in-out;
     font-weight: 600;
     border-radius: 1em;
@@ -61,7 +73,7 @@ header nav ul li a:hover{
     cursor: pointer;
     background-color: var(--cor3);
     color: #000000;
-    padding: .6em 2.4em;
+    padding: .2em 2em;
     border: none;
     border: 1px solid var(--cor3);
     border-radius: 1em;
@@ -72,15 +84,6 @@ header nav ul li a:hover{
 .header-buttonLink:hover{
     background-color: transparent;
     color: var(--cor3);
-}
-
-header nav{
-    width: 75%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 2em;
 }
 
 .cadastrar{
@@ -94,15 +97,27 @@ header nav{
 }
 
 main{
-    margin-top: 16em;
-    margin-bottom: 10em;
+    margin-top: 6em;
+    margin-bottom: 6em;
     background-color: rgba(0, 0, 0, 0.450);
-    width: 80%;
-    padding: 2%;
+    width: 100%;
     color: #ffffff;
     display: flex;
     flex-direction: column;
     gap: 2em;
+    padding: 2em 0;
+}
+
+.banner{
+    width: 100vw;
+    height: 55vh;
+}
+
+.video-banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; 
 }
 
 .japan-image{
@@ -129,19 +144,25 @@ footer{
     position: fixed;
     top: 2em;
     right: 2em;
-    height: 12vh;
-    width: 6vw;
+    height: 8vh;
+    width: 4vw;
     background-color: transparent;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     cursor: pointer;
     border: none;
+    z-index: 8;
 }
 
 #menuHam .menuHam-listra{
-    height: 8px;
+    height: 4px;
     width: 100%;
-    background-color: #000000;
+    background-color: #ffffff;
     border-radius: 1em;
+}
+
+.titulo{
+    text-align: center;
+    color: var(--cor3);
 }
