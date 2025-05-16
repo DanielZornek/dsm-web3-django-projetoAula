@@ -99,3 +99,31 @@ Para usar o cadastro de imagem precisa usar o Pillow
     ° python3/py -m pip install Pillow
 
 Dia 9/5/2025 - Sistema de login, sessão e página welcome
+
+Basta criar uma sessão quando o usuário loga e verificar se ela esta ativa
+
+Dia 16/05/25 - admin
+
+° Criar um usuário administrador
+    * parar o servidor!!!
+    - py manage.py createsuperuser
+        vai pedir o user, email e senha, o email é opcional
+
+    Admin que criei:
+        USER: danielzornek
+        SENHA: car123
+
+    ° Para as tabelas aparecerem no painel de admin tem que ir no arquivo0 admin e colocar as tabelas
+    admin.site.register(model/tabela)
+
+    ° Personalizar o modo como os modelos vão aparecer no painel:
+        - ir no arquivo models, na modelo usar a função __str__, comoo:
+
+        def __str__(self):
+            return f"Nome: {self.nome} | Email: ({self.email})"
+
+        - No arquivo admin criar uma classe que herde admin
+        Essa segunda forma vai exibir em formato de coluna os dados
+
+° Instalar requests para consumir api
+    py -m pip instal requests

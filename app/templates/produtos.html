@@ -41,6 +41,12 @@
     </div>
     
 {% endfor %}
+
+<h2>Outros produtos</h2>
+
+{% for prod in produtosapi%}
+    <img src="{{ prod.image }}" width="100px">
+{% endfor %}
 </div>
 
 {% endblock %}

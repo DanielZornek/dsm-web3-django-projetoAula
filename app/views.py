@@ -3,9 +3,9 @@ from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
 from django.template import loader
-from django.contrib import messages
 from app.models import Usuario, Veiculo
 from app.forms import formulario, VeiculoForm, formularioLogin
+import requests
 
 # Create your views here.
 
@@ -51,13 +51,14 @@ def editarUsuario(request, id_usuario):
         return render(request, "editar-usuario.html", {'form' : formUsuarioEditar})
 
 def exibirProdutos(request):
+    produtosapi = requests.get("https://fakestoreapi.com/products").json()
     if not request.session.get("email"):    
         return redirect("login")
 
     veiculos = Veiculo.objects.all().values()
     
     return render(request, "produtos.html", 
-                    {'listaProdutos': veiculos})
+                    {'listaProdutos': veiculos, 'produtosapi': produtosapi})
 
 def cadastrarProduto(request):
 
@@ -87,8 +88,9 @@ def login(request):
             try:
                 userLogin = Usuario.objects.get(email=_email, senha=_senha) 
                 if userLogin is not None:
-                    request.session.set_expiry(timedelta(seconds=180))
+                    request.session.set_expiry(timedelta(minutes=15))
                     request.session['email'] = _email
+                    request.session['nome'] = userLogin.nome
                     return redirect("dashboard")
             except Usuario.DoesNotExist:
                 return render(request, "login.html")
@@ -100,4 +102,5 @@ def dashboard(request):
         return redirect("login")
 
     _email = request.session.get("email")
-    return render(request, "dashboard.html", {'email': _email})
+    _nome = request.session.get("nome")
+    return render(request, "dashboard.html", {'email': _email, 'nome': _nome})

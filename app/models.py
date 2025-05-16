@@ -6,6 +6,9 @@ class Usuario(models.Model): # aqui dizemos que a classe pai Model irá dar hera
     email = models.EmailField()
     senha = models.CharField(max_length=16)
 
+    # def __str__(self):
+    #     return f"Nome: {self.nome} | Email: ({self.email})"
+
 class Veiculo(models.Model):
     marca = models.CharField(max_length=80)
     modelo = models.CharField(max_length=80)
