@@ -25,6 +25,7 @@ def exibirUsuarios(request):
                     # {} PARA PASSAR PARA DICIONARIO PQ VEM COMO ARRAY ASSOCIATIVO
 
 def addUsuario(request):
+    viaCEPAPI = requests.get("http://127.0.0.1:8000")
     formUsuario = formulario(request.POST or None) # verifica se foi ou não submetido
 
     if request.POST: 
@@ -51,7 +52,6 @@ def editarUsuario(request, id_usuario):
         return render(request, "editar-usuario.html", {'form' : formUsuarioEditar})
 
 def exibirProdutos(request):
-    produtosapi = requests.get("https://fakestoreapi.com/products").json()
     if not request.session.get("email"):    
         return redirect("login")
 

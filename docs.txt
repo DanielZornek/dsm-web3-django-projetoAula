@@ -1,3 +1,8 @@
+° FERRAMENTAS SENDO UTILIZADAS NECESSÁRIO instalação
+    - Django
+    - Pillow
+    - requests
+
 Templates - models.py: fica as tabelas do banco de dados, os modelos(classes)
 Views - views.py: lida com a lógica e gerencia o fluxo de dados, a view é renderizada a partir de uma url
 Templates - template.html: renderiza o HTML
@@ -127,3 +132,12 @@ Dia 16/05/25 - admin
 
 ° Instalar requests para consumir api
     py -m pip instal requests
+
+DIA 21/05/25 - Alterando o modelo Usuario para possibilitar inserção de sua localidade e usando 
+a ViaCEP API | Criando chaves estrangeiras e relacionamentos (Modelo Produto(Veículo) e Categoria)
+
+* Como são muitos campos é melhor adicionar isso nos campos do model para definir algum valor default
+    ° default="Desconhecida", ficando logradouro = models.CharField(max_length=100, default="Desconhecida")
+* Lembrando os comandos para alterar o modelos
+    - py manage.pt makemigrations
+    - py manage.py migrate
