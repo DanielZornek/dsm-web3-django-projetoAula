@@ -3,11 +3,16 @@ from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
 from django.template import loader
-from app.models import Usuario, Veiculo
+from app.models import Categoria, Usuario, Veiculo
 from app.forms import formulario, VeiculoForm, formularioLogin
 import requests
 import io, urllib, base64
 import matplotlib.pyplot as plt
+
+from app.serializers import CategoriaSerializer, VeiculoSerializer
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.decorators import api_view
 
 # Create your views here.
 
@@ -131,3 +136,23 @@ def grafico(request):
     uri = 'data:image/png;base64,' + urllib.parse.quote(string)
 
     return render(request, 'grafico.html', {'dados' : uri})
+
+@api_view(['GET', 'POST'])
+def getCategorias(request):
+    if request.method == 'GET':
+        categorias = Categoria.objects.all()
+        serializer = CategoriaSerializer(categorias, many=True)
+        return Response(serializer.data)
+    elif request.method == "POST":
+        serializer = CategoriaSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['GET'])
+def getVeiculos(request):
+    if request.method == 'GET':
+        categorias = Veiculo.objects.all()
+        serializer = VeiculoSerializer(categorias, many=True)
+        return Response(serializer.data)

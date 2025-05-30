@@ -2,6 +2,9 @@
     - Django
     - Pillow
     - requests
+    - matplotlib
+    - djangorestframework
+    - django-cors-headers
 
 Templates - models.py: fica as tabelas do banco de dados, os modelos(classes)
 Views - views.py: lida com a lógica e gerencia o fluxo de dados, a view é renderizada a partir de uma url
@@ -150,3 +153,27 @@ Dia 30/05
 
     ° matplotlib: para fazer o gráfico;
     ° pillow: para gerar imagens (já utilizando por conta das imagens dos produtos)
+
+    Trabalhandop com API
+
+    * Bibliotecas necessárias
+    
+    ° djangorestframework: permite a criação de api;
+    ° django-cors-headers: permite as requisições http.
+
+    py -m pip install djangorestframework django-cors-headers
+
+    * IR NO ARQUIVO SETTINGS.PY DO PROJETO
+
+        - Em Installed apps adicionar:
+            'rest_framework',
+            'corsheaders',
+        - Em middleware:
+            'corsheaders.middleware.CorsMiddleware'
+
+    Criando a API
+        - Ir na tabela migrations que deseja disponibizar
+        - Em fields alterar o atributo do id Serialized para True
+        - Novamente fazer os migrates para alterar isso
+        - Criar arquivo Serializer que vai disponibizaro JSON
+        - criar as classes das models que mostrará os dados 

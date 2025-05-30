@@ -13,5 +13,7 @@ urlpatterns = [
     path('produtos', views.exibirProdutos, name="exibirProdutos"),
     path('login', views.login, name="login"),
     path('dashboard', views.dashboard, name="dashboard"),
-    path('grafico', views.grafico, name="grafico")
+    path('grafico', views.grafico, name="grafico"),
+    path('categorias', views.getCategorias, name="categorias"),
+    path('veiculos', views.getVeiculos, name="veiculos")
 ]
