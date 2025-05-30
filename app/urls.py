@@ -15,5 +15,6 @@ urlpatterns = [
     path('dashboard', views.dashboard, name="dashboard"),
     path('grafico', views.grafico, name="grafico"),
     path('categorias', views.getCategorias, name="categorias"),
+    path('categorias/<int:id_categoria>', views.getCategoriaID, name="categoriaID"),
     path('veiculos', views.getVeiculos, name="veiculos")
 ]
