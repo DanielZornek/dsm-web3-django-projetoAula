@@ -48,5 +48,8 @@ class VeiculoForm(forms.ModelForm):
             'dataFabricacao' : forms.TextInput(attrs={'type':'date', 'class':'form-input'}),
             'estoque' : forms.TextInput(attrs={'type':'number', 'class':'form-input'}),
             'imagem' : forms.FileInput(attrs={'accept': 'image/*'}),
-            'categoria' : forms.Select(attrs={'placeholder: Selecione a Categoria: '})
+            'categoria' : forms.Select(attrs={
+                    'placeholder': 'Selecione a Categoria',
+                    'class':'form-input'
+                })
         }

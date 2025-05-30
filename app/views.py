@@ -6,6 +6,8 @@ from django.template import loader
 from app.models import Usuario, Veiculo
 from app.forms import formulario, VeiculoForm, formularioLogin
 import requests
+import io, urllib, base64
+import matplotlib.pyplot as plt
 
 # Create your views here.
 
@@ -57,8 +59,7 @@ def exibirProdutos(request):
 
     veiculos = Veiculo.objects.all().values()
     
-    return render(request, "produtos.html", 
-                    {'listaProdutos': veiculos, 'produtosapi': produtosapi})
+    return render(request, "produtos.html", {"listaProdutos": veiculos})
 
 def cadastrarProduto(request):
 
@@ -104,3 +105,29 @@ def dashboard(request):
     _email = request.session.get("email")
     _nome = request.session.get("nome")
     return render(request, "dashboard.html", {'email': _email, 'nome': _nome})
+
+def grafico(request):
+    # RECUPERA OS DADOS DA TABELA E CRIA DUAS LISTAS
+    produtos = Veiculo.objects.all()
+    marca_modelo = [f"{v.marca} \n- {v.modelo}" for v in produtos]
+    estoque = [v.estoque for v in produtos]
+
+    # CRIA O GRÁFICO EM UMA IMAGEM (COM OS DADOS DAS LISTAS)
+    fig, ax = plt.subplots()
+    ax.bar(marca_modelo, estoque)
+    ax.set_xlabel("Produto")
+    ax.set_ylabel("Estoque")
+    ax.set_title("Produtos")
+
+    fig.subplots_adjust(bottom=0.2)
+
+    # ARMAZENA A IMAGEM TEMPORARIAMENTE NA MEMÓRIA RAM
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+
+    # CONVERTE A IMAGEM EM STRING 
+    string = base64.b64encode(buf.read())
+    uri = 'data:image/png;base64,' + urllib.parse.quote(string)
+
+    return render(request, 'grafico.html', {'dados' : uri})

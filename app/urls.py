@@ -12,5 +12,6 @@ urlpatterns = [
     path("cadastrar-produto", views.cadastrarProduto, name="cadastrarProduto"),
     path('produtos', views.exibirProdutos, name="exibirProdutos"),
     path('login', views.login, name="login"),
-    path('dashboard', views.dashboard, name="dashboard")
+    path('dashboard', views.dashboard, name="dashboard"),
+    path('grafico', views.grafico, name="grafico")
 ]

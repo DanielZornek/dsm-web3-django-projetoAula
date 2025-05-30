@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="{% static 'template.css' %}">
     {% block style %}{% endblock %}
     <link rel="stylesheet" href="{% static 'responsive.css' %}">
+    <style>
+        {% block estiloDentro %}{% endblock %}
+    </style>
 </head>
 <body>
     <header>

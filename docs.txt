@@ -141,3 +141,12 @@ a ViaCEP API | Criando chaves estrangeiras e relacionamentos (Modelo Produto(Ve�
 * Lembrando os comandos para alterar o modelos
     - py manage.pt makemigrations
     - py manage.py migrate
+
+Dia 30/05
+    Criação de gráficos e apis
+
+    * Para fazer gráficos e exibí-los em formato de image, necessita-se de duas bibliotecas
+    pip install matplotlib pillow
+
+    ° matplotlib: para fazer o gráfico;
+    ° pillow: para gerar imagens (já utilizando por conta das imagens dos produtos)
