@@ -1,5 +1,5 @@
 from django import forms
-from app.models import Usuario, Veiculo
+from app.models import Usuario, Veiculo, Venda
 
 # formulario de cadastro
 class formulario(forms.ModelForm):
@@ -52,4 +52,15 @@ class VeiculoForm(forms.ModelForm):
                     'placeholder': 'Selecione a Categoria',
                     'class':'form-input'
                 })
+        }
+
+class checkoutForm(forms.ModelForm):
+    class Meta:
+        model = Venda
+        fields = ('numero_cartao', 'validade', 'cvv')
+
+        widgets = {
+            'numero_cartao' : forms.TextInput(attrs={'type' : 'text', 'class':'form-input', 'placeholder':'0000 0000 0000 0000'}),
+            'validade' : forms.TextInput(attrs={'type' : 'text', 'class':'form-input', 'placeholder':'12/26'}),
+            'cvv' : forms.TextInput(attrs={'type' : 'text', 'class':'form-input', 'placeholder':'123'})
         }

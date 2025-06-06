@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from app.models import Categoria, Usuario, Veiculo
-from app.forms import formulario, VeiculoForm, formularioLogin
+from app.forms import formulario, VeiculoForm, formularioLogin, checkoutForm
 import requests
 import io, urllib, base64
 import matplotlib.pyplot as plt
@@ -145,18 +145,46 @@ def checkout(request, veiculo_cd):
     
     usuario_email = request.session.get("email")
     usuario_nome = request.session.get("nome")
+
+    usuario = get_object_or_404(Usuario, email=usuario_email)
     
     veiculo = get_object_or_404(Veiculo, id=veiculo_cd)
+
+    if request.method == "POST":
+        formCheckout = checkoutForm(request.POST or None)
+
+        if formCheckout.is_valid():
+            nova_venda = formCheckout.save(commit=False)
+
+            nova_venda.usuario = usuario
+            nova_venda.produto = veiculo
+            nova_venda.preco_venda = veiculo.preco
+
+            nova_venda.save()
+
+            if veiculo.estoque > 0:
+                veiculo.estoque -= 1
+                veiculo.save() 
+
+            return redirect('checkout_status')
+    else:
+        formCheckout = checkoutForm()
+
 
     # Preparar os dados para ficar mais fácil depois
     dados = {
         'usuario_nome' : usuario_nome,
         'usuario_email' : usuario_email,
+        'veiculo_cd' : veiculo_cd,
         'nome_veiculo' : f"{veiculo.marca} {veiculo.modelo}",
         'preco_veiculo' : veiculo.preco,
+        'formCheckout':formCheckout
     }
 
     return render(request, "checkout.html", dados)
+
+def checkout_status(request):
+    return render(request, "checkout_status.html")
 
 def grafico(request):
     # RECUPERA OS DADOS DA TABELA E CRIA DUAS LISTAS

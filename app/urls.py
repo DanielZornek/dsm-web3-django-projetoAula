@@ -18,5 +18,6 @@ urlpatterns = [
     path('categorias/<int:id_categoria>', views.getCategoriaID, name="categoriaID"),
     path('veiculos', views.getVeiculos, name="veiculos"),
     path('buscar_cep/', views.buscar_cep_api, name='buscar_cep_api'),
-    path('checkout/<int:veiculo_cd>/', views.checkout, name="checkout")
+    path('checkout/<int:veiculo_cd>/', views.checkout, name="checkout"),
+    path('checkout-status',views.checkout_status, name="checkout_status")
 ]
