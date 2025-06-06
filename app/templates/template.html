@@ -23,12 +23,12 @@
                 <li><a href="{% url 'exibirProdutos' %}">Produtos</a></li>
                 <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
             </ul>
-            <a href="{% url 'login' %}" >
-            <button class="header-buttonLink">Entrar</button>
-            </a>
-            <a href="{% url 'addUsuario' %}" class="header-buttonLink cadastrar">
-                Cadastrar
-            </a>
+            {% if request.session.email %}
+                <a href="{% url 'logout' %}" class="header-buttonLink">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="header-buttonLink">Entrar</a>
+                <a href="{% url 'addUsuario' %}" class="header-buttonLink cadastrar">Cadastrar</a>
+            {% endif %}
         </nav>
     </header>
 

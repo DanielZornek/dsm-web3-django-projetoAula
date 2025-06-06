@@ -4,6 +4,17 @@
 
 {% block titulo %} Home {% endblock %}
 
+{% block estiloDentro %}
+    .main-info{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2em;
+        font-size: 1.2em;
+        gap: 4em;
+    }   
+{% endblock %}
+
 {% block conteudo %}
 
 <div class="banner">
@@ -14,5 +25,13 @@
 </div>
 
 <h1 class="titulo">Akame Stock</h1>
+
+<div class="main-info">
+    <p>
+        Bem-vindo a Akame Stock, nossa loja virtual é focada em veículos novos, seminovos e usados, com documentação e tudo, venha conhecer e acelerar\!
+    </p>
+
+    <a href="{% url 'addUsuario' %}" class="header-buttonLink cadastrar">Cadastrar</a>
+</div>
 
 {% endblock %}

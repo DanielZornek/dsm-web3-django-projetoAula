@@ -242,7 +242,7 @@ def graficoVendas(request):
     )
 
     datas = [v['data'].strftime('%d/%m/%Y') for v in vendas_por_dia]
-    totais = [(v['total_vendas']) for v in vendas_por_dia]
+    totais = [int(v['total_vendas']) for v in vendas_por_dia]
 
     fig, ax = plt.subplots()
     ax.plot(datas, totais, marker='o')
@@ -260,6 +260,10 @@ def graficoVendas(request):
     uri = 'data:image/png;base64,' + urllib.parse.quote(string)
 
     return render(request, 'grafico-venda.html', {'dados': uri})
+
+def logout(request):
+    request.session.flush()
+    return redirect("login")
 
 @api_view(['GET', 'POST'])
 def getCategorias(request):

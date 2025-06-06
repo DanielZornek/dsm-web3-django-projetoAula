@@ -23,4 +23,5 @@ urlpatterns = [
     path('buscar_cep/', views.buscar_cep_api, name='buscar_cep_api'),
     path('checkout/<int:veiculo_cd>/', views.checkout, name="checkout"),
     path('checkout-status',views.checkout_status, name="checkout_status"),
+    path("logout", views.logout, name="logout")
 ]
