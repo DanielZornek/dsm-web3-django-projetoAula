@@ -6,6 +6,43 @@
 
 {% block style %} <link rel="stylesheet" href="{% static 'produtos.css' %}"> {% endblock %}
 
+{% block estiloDentro %}
+    .card-group-card-btns{
+        display: flex;
+        flex-direction: column;
+        gap: .8em;
+        align-items: flex-start;
+    }
+    .card-group-card-btn{
+        text-decoreation: none;
+        color: #fff;
+        padding: .8em;
+        border-radius: .8em;
+    }
+    .comprar{
+        background-color: var(--cor1);
+        transition: .2s;
+    }
+    .comprar:hover{
+        filter: opacity(70%);
+    }
+    .editar{
+        background-color: var(--cor3);
+        transition: .2s;
+        color: #000;
+    }
+    .editar:hover{
+        filter: opacity(70%);
+    }
+    .excluir{
+        background-color: var(--cor5);
+        transition: .2s;
+    }
+    .excluir:hover{
+        filter: opacity(70%);
+    }
+{% endblock %}
+
 {% block conteudo %}
 <h1 class="titulo">Veículos cadastrados</h1>
 <div class="card-group">
@@ -31,9 +68,15 @@
             
         </section>
 
-        <section>
-            <a class="card-group-card-buyBtn" href="{% url 'checkout' veiculo.id %}">
+        <section class="card-group-card-btns">
+            <a class="card-group-card-btn comprar" href="{% url 'checkout' veiculo.id %}">
                 Comprar
+            </a>
+            <a class="card-group-card-btn editar" href="{% url 'editar_produto' veiculo.id %}">
+                Editar
+            </a>
+            <a class="card-group-card-btn excluir" href="{% url 'excluirProduto' veiculo.id %}">
+                Excluir
             </a>
         </section>
 
@@ -42,4 +85,20 @@
 {% endfor %}
 </div>
 
+<h1 class="titulo">Produtos Internacionais</h1>
+<hr>
+<div class="card-group">
+    {% for produtosapi in produtoInternacionais %}
+        <div class="card-group-card">
+            <img src="{{ produtosapi.image }}" alt="Imagem do produto" width="150px" style="align-self: center;">
+            <h3>{{ produtosapi.title }}</h3>
+            <p>
+                <strong>Categoria: </strong> {{ produtosapi.category }}
+            </p>
+            <p>
+                Preço: {{ produtosapi.price }}
+            <p>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}

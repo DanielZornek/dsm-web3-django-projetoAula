@@ -3,11 +3,13 @@ from django.shortcuts import get_object_or_404, render, redirect
 
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
-from app.models import Categoria, Usuario, Veiculo
+from app.models import Categoria, Usuario, Veiculo, Venda
 from app.forms import formulario, VeiculoForm, formularioLogin, checkoutForm
 import requests
 import io, urllib, base64
 import matplotlib.pyplot as plt
+from django.db.models import Count
+from django.db.models.functions import TruncDate
 
 from app.serializers import CategoriaSerializer, VeiculoSerializer
 from rest_framework.response import Response
@@ -63,8 +65,10 @@ def exibirProdutos(request):
         return redirect("login")
 
     veiculos = Veiculo.objects.all().values()
+
+    produtosapifake = requests.get("https://fakestoreapi.com/products").json()
     
-    return render(request, "produtos.html", {"listaProdutos": veiculos})
+    return render(request, "produtos.html", {"listaProdutos": veiculos, "produtoInternacionais" : produtosapifake})
 
 def cadastrarProduto(request):
 
@@ -83,6 +87,22 @@ def cadastrarProduto(request):
     
     return render(request, "cadastrar-produto.html", {'formProduto' : form})
 
+def editar_produto(request, veiculo_cd):
+    veiculo = Veiculo.objects.get(id=veiculo_cd)
+    formVeiculoEditar = VeiculoForm(request.POST or None, instance=veiculo)
+
+    if request.POST:
+        if formVeiculoEditar.is_valid():
+            formVeiculoEditar.save()
+            return redirect("exibirProdutos")
+    else:
+        return render(request, "editar_produto.html", {'formEditarVeiculo' : formVeiculoEditar})
+
+def excluir_produto(request, veiculo_cd):
+    veiculo = Veiculo.objects.get(id=veiculo_cd)
+    veiculo.delete()
+    return redirect('exibirProdutos')
+
 def login(request):
     frmLogin = formularioLogin(request.POST or None)
 
@@ -99,7 +119,7 @@ def login(request):
                     request.session['nome'] = userLogin.nome
                     return redirect("dashboard")
             except Usuario.DoesNotExist:
-                return render(request, "login.html")
+                return render(request, "login.html", {'form' : frmLogin})
 
     return render(request, "login.html", {'form' : frmLogin})
 
@@ -211,6 +231,35 @@ def grafico(request):
     uri = 'data:image/png;base64,' + urllib.parse.quote(string)
 
     return render(request, 'grafico.html', {'dados' : uri})
+
+def graficoVendas(request):
+    vendas_por_dia = (
+        Venda.objects
+        .annotate(data=TruncDate('data_venda'))
+        .values('data')
+        .annotate(total_vendas=Count('id'))
+        .order_by('data')
+    )
+
+    datas = [v['data'].strftime('%d/%m/%Y') for v in vendas_por_dia]
+    totais = [(v['total_vendas']) for v in vendas_por_dia]
+
+    fig, ax = plt.subplots()
+    ax.plot(datas, totais, marker='o')
+    ax.set_xlabel('Data')
+    ax.set_ylabel('Total de Vendas')
+    ax.set_title('Vendas por Dia')
+    plt.xticks(rotation=45)
+
+    buf = io.BytesIO()
+    plt.tight_layout()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+
+    string = base64.b64encode(buf.read())
+    uri = 'data:image/png;base64,' + urllib.parse.quote(string)
+
+    return render(request, 'grafico-venda.html', {'dados': uri})
 
 @api_view(['GET', 'POST'])
 def getCategorias(request):

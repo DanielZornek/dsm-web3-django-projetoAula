@@ -1,4 +1,4 @@
-# Akame 
+# Akame Stock 
 
 ### Projeto Django voltado a loja virtual de veículos
 
@@ -15,10 +15,7 @@
         * Linux
             * ``` source ambienteVirtual\bin\activate ```
     * Desativando
-        * Windows
-            * ``` ambienteVirtual\Scripts\deactivate ```
-        * Linux
-            * ``` deactivate ```
+        * ``` deactivate ```
 * Instalar dependências
     * Django
         * ``` python3 -m pip install Django ``` 
@@ -35,3 +32,5 @@
 * Rodando
     * ``` python3 manage.py runserver ```
     * Será informado a url do servidor, copiar e colar no navegador
+
+Qualquer problema há um docs.txt na raiz do projeto com todo o processo do desenvolvimento do software

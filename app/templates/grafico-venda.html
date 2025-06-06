@@ -1,0 +1,15 @@
+{% extends "template.html" %}
+
+{% block titulo %} Dashboard {% endblock %}
+
+{% block estiloDentro %}
+    .grafico{
+        margin: 0 auto;
+        width: 50%;
+    }
+{% endblock %}
+
+{% block conteudo %}
+    <h1 class="titulo">Gráfico de produtos disponíveis no estoque</h1>
+    <img src="{{ dados }}" alt="estoque" class="grafico">
+{% endblock %}

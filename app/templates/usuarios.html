@@ -2,6 +2,40 @@
 
 {% block titulo %} Usuários {% endblock %}
 
+{% block estiloDentro %}
+
+    table{
+        background-color: #fff;
+        color: #000;
+    }
+
+    table, th, tr, td{
+        padding: 2%;
+    }
+
+    .btn{
+        text-decoreation: none;
+        color: #fff;
+        padding: .8em;
+        border-radius: .8em;
+    }
+    .editar{
+        background-color: var(--cor3);
+        transition: .2s;
+        color: #000;
+    }
+    .editar:hover{
+        filter: opacity(70%);
+    }
+    .excluir{
+        background-color: var(--cor5);
+        transition: .2s;
+    }
+    .excluir:hover{
+        filter: opacity(70%);
+    }
+{% endblock %}
+
 {% block conteudo %}
 
 <h1>Usuários cadastrados</h1>
@@ -18,8 +52,8 @@
         <tr>
             <td> {{ usuario.nome }} </td>
             <td> {{ usuario.email }}</td>
-            <td><a href="{% url 'excluirUsuario' usuario.id %}">Excluir</a></td>
-            <td><a href="{% url 'editarUsuario' usuario.id %}">Editar</a></td>
+            <td><a class="btn excluir" href="{% url 'excluirUsuario' usuario.id %}">Excluir</a></td>
+            <td><a class="btn editar" href="{% url 'editarUsuario' usuario.id %}"> Editar</a></td>
         </tr>
     {% endfor %}
 </table>   
