@@ -16,5 +16,7 @@ urlpatterns = [
     path('grafico', views.grafico, name="grafico"),
     path('categorias', views.getCategorias, name="categorias"),
     path('categorias/<int:id_categoria>', views.getCategoriaID, name="categoriaID"),
-    path('veiculos', views.getVeiculos, name="veiculos")
+    path('veiculos', views.getVeiculos, name="veiculos"),
+    path('buscar_cep/', views.buscar_cep_api, name='buscar_cep_api'),
+    path('checkout/<int:veiculo_cd>/', views.checkout, name="checkout")
 ]

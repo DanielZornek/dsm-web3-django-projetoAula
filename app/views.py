@@ -1,7 +1,7 @@
 from datetime import timedelta
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from app.models import Categoria, Usuario, Veiculo
 from app.forms import formulario, VeiculoForm, formularioLogin
@@ -110,6 +110,53 @@ def dashboard(request):
     _email = request.session.get("email")
     _nome = request.session.get("nome")
     return render(request, "dashboard.html", {'email': _email, 'nome': _nome})
+
+def buscar_cep_api(request):
+    cep = request.GET.get('cep', None)
+    if cep:
+        cep = cep.replace('-', '').replace('.', '')
+        if len(cep) == 8:
+            try:
+                response = requests.get(f'https://viacep.com.br/ws/{cep}/json/')
+                response.raise_for_status()
+                data = response.json()
+
+                if not data.get('erro'):
+                    return JsonResponse({
+                        'logradouro': data.get('logradouro', ''),
+                        'bairro': data.get('bairro', ''),
+                        'cidade': data.get('localidade', ''),
+                        'estado': data.get('uf', '')
+                    })
+                else:
+                    return JsonResponse({'error': 'CEP não encontrado.'}, status=404)
+            except requests.exceptions.RequestException as e:
+                print(f"Erro ao conectar com ViaCEP: {e}")
+                return JsonResponse({'error': 'Erro de conexão com a API ViaCEP.'}, status=500)
+            except ValueError:
+                return JsonResponse({'error': 'Resposta inválida da API ViaCEP.'}, status=500)
+        else:
+            return JsonResponse({'error': 'CEP inválido. Deve ter 8 dígitos.'}, status=400)
+    return JsonResponse({'error': 'CEP não fornecido.'}, status=400)
+
+def checkout(request, veiculo_cd):
+    if not request.session.get("email"):    
+        return redirect("login")
+    
+    usuario_email = request.session.get("email")
+    usuario_nome = request.session.get("nome")
+    
+    veiculo = get_object_or_404(Veiculo, id=veiculo_cd)
+
+    # Preparar os dados para ficar mais fácil depois
+    dados = {
+        'usuario_nome' : usuario_nome,
+        'usuario_email' : usuario_email,
+        'nome_veiculo' : f"{veiculo.marca} {veiculo.modelo}",
+        'preco_veiculo' : veiculo.preco,
+    }
+
+    return render(request, "checkout.html", dados)
 
 def grafico(request):
     # RECUPERA OS DADOS DA TABELA E CRIA DUAS LISTAS
